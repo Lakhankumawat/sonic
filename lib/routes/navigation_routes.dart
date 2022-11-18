@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sonic/src/screens/bluetooth_off/bluetooth_off.dart';
+import 'package:sonic/src/screens/clockView/clock.dart';
 import 'package:sonic/src/screens/device/devices.dart';
 import 'package:sonic/src/screens/find_device/find_device.dart';
 import 'package:sonic/src/screens/permission/permission.dart';
@@ -16,4 +17,5 @@ final Map<String, WidgetBuilder> routes = {
   PermissionsPage.routeName: (context) => PermissionsPage(),
   ChatPage.routeName: (context) => ChatPage(),
   RadarPage.routeName: (context) => RadarPage(),
+  RadarView.routeName: (context) => RadarView(),
 };

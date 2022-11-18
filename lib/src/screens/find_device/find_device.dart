@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get/get.dart';
 import 'package:sonic/controller/find_device_controller.dart';
+import 'package:sonic/src/screens/clockView/clock.dart';
 import 'package:sonic/src/screens/radar/radarPage.dart';
 
 import '../../../components/widgets.dart';
@@ -10,31 +11,35 @@ import 'list_devices.dart';
 
 class FindDevicesScreen extends StatelessWidget {
   static String routeName = '/find_devices';
-  final FindDeviceController _dc =
-      Get.put(FindDeviceController());
+  final FindDeviceController _dc = Get.put(FindDeviceController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Obx(()=> Text(_dc.isLoading.value?'Discovering Devices':'Discovered devices',),),
+        title: Obx(
+          () => Text(
+            _dc.isLoading.value ? 'Discovering Devices' : 'Discovered devices',
+          ),
+        ),
         actions: <Widget>[
           _dc.isLoading.value
               ? FittedBox(
-            child: Container(
-              margin: const EdgeInsets.all(16.0),
-              child: const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-            ),
-          )
+                  child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  ),
+                )
               : IconButton(
-            icon: Icon(Icons.replay),
-            onPressed:_dc.restartDiscovery,
-          )
+                  icon: Icon(Icons.replay),
+                  onPressed: _dc.restartDiscovery,
+                )
         ],
       ),
-      body: Obx(()=>ListView.builder(
+      body: Obx(
+        () => ListView.builder(
           itemCount: _dc.results.length,
           itemBuilder: (BuildContext context, index) {
             BluetoothDiscoveryResult result = _dc.results[index];
@@ -44,10 +49,7 @@ class FindDevicesScreen extends StatelessWidget {
               device: device,
               rssi: result.rssi,
               onTap: () {
-                //pop with this argument or push to new state with context
-                //push new context on the top of the stack
-                 Navigator.of(context).pushNamed(RadarPage.routeName,arguments: address);
-
+                Get.toNamed(RadarView.routeName, arguments: address);
               },
               onLongPress: () async {
                 try {
@@ -65,17 +67,17 @@ class FindDevicesScreen extends StatelessWidget {
                         'Bonding with ${device.address} has ${bonded ? 'succed' : 'failed'}.');
                   }
 
-                    _dc.results[_dc.results.indexOf(result)] = BluetoothDiscoveryResult(
-                        device: BluetoothDevice(
-                          name: device.name ?? '',
-                          address: address,
-                          type: device.type,
-                          bondState: bonded
-                              ? BluetoothBondState.bonded
-                              : BluetoothBondState.none,
-                        ),
-                        rssi: result.rssi);
-
+                  _dc.results[_dc.results.indexOf(result)] =
+                      BluetoothDiscoveryResult(
+                          device: BluetoothDevice(
+                            name: device.name ?? '',
+                            address: address,
+                            type: device.type,
+                            bondState: bonded
+                                ? BluetoothBondState.bonded
+                                : BluetoothBondState.none,
+                          ),
+                          rssi: result.rssi);
                 } catch (ex) {
                   showDialog(
                     context: context,

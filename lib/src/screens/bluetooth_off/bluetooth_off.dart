@@ -3,6 +3,7 @@ import 'package:flutter_blue/flutter_blue.dart';
 
 class BluetoothOffScreen extends StatelessWidget {
   static String routeName = '/bluetooth_off';
+
   const BluetoothOffScreen({Key? key, this.state}) : super(key: key);
 
   final BluetoothState? state;
@@ -21,8 +22,12 @@ class BluetoothOffScreen extends StatelessWidget {
               color: Colors.white54,
             ),
             Text(
-              'Bluetooth Adapter is ${state != null ? state.toString().substring(15) : 'not available'}.',
-              style: Theme.of(context).primaryTextTheme.bodyMedium,
+              'Bluetooth Adapter is ${state != null ? state.toString()
+                  .substring(15) : 'not available'}.',
+              style: Theme
+                  .of(context)
+                  .primaryTextTheme
+                  .bodyMedium,
             ),
           ],
         ),

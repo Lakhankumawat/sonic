@@ -9,40 +9,40 @@ class BluetoothDeviceListEntry extends ListTile {
     GestureLongPressCallback? onLongPress,
     bool enabled = true,
   }) : super(
-    onTap: onTap,
-    onLongPress: onLongPress,
-    enabled: enabled,
-    leading:
-    Icon(Icons.devices), // @TODO . !BluetoothClass! class aware icon
-    title: Text(device.name ?? ""),
-    subtitle: Text(device.address.toString()),
-    trailing: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        rssi != null
-            ? Container(
-          margin: new EdgeInsets.all(8.0),
-          child: DefaultTextStyle(
-            style: _computeTextStyle(rssi),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(rssi.toString()),
-                Text('dBm'),
-              ],
-            ),
+          onTap: onTap,
+          onLongPress: onLongPress,
+          enabled: enabled,
+          leading: Icon(Icons.devices),
+          // @TODO . !BluetoothClass! class aware icon
+          title: Text(device.name ?? device.address),
+          subtitle: Text(device.address.toString()),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              rssi != null
+                  ? Container(
+                      margin: new EdgeInsets.all(8.0),
+                      child: DefaultTextStyle(
+                        style: _computeTextStyle(rssi),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(rssi.toString()),
+                            Text('dBm'),
+                          ],
+                        ),
+                      ),
+                    )
+                  : const SizedBox(width: 0, height: 0),
+              device.isConnected
+                  ? const Icon(Icons.import_export)
+                  : const SizedBox(width: 0, height: 0),
+              device.isBonded
+                  ? Icon(Icons.link)
+                  : Container(width: 0, height: 0),
+            ],
           ),
-        )
-            : const SizedBox(width: 0, height: 0),
-        device.isConnected
-            ? const Icon(Icons.import_export)
-            : const SizedBox(width: 0, height: 0),
-        device.isBonded
-            ? Icon(Icons.link)
-            : Container(width: 0, height: 0),
-      ],
-    ),
-  );
+        );
 
   static TextStyle _computeTextStyle(int rssi) {
     /**/ if (rssi >= -35)

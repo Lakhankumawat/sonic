@@ -100,6 +100,7 @@ class RadarPainter extends CustomPainter {
   void drawObject(Canvas canvas, Size size) {
     double pixelDistance =
         _rc.idistance.value * ((size.height - size.height * 0.1666) * 0.025);
+    print("pixelDistance: $pixelDistance");
     if (pixelDistance < 40) {
       //draw a point on the radar
       canvas.drawPoints(

@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sonic/src/screens/radar/radarPainter.dart';
-import '../../../controller/radar_controller.dart';
 
 class RadarView extends StatefulWidget {
   @override

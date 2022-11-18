@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:lottie/lottie.dart';
 import '../../../components/custom_button.dart';
 import '../../../controller/permission_controller.dart';
 import '../home/home.dart';
 
 class PermissionsPage extends StatelessWidget {
   static String routeName = '/permissions';
+
   PermissionsPage({Key? key}) : super(key: key);
 
   final PermissionController pc = Get.put(PermissionController());
@@ -39,16 +40,12 @@ class PermissionsPage extends StatelessWidget {
             children: [
               Text(
                 'Enable Bluetooth',
-                style: Theme.of(context).textTheme.headline2!.copyWith(
-                      color: Colors.white,
-                    ),
+                style: Theme.of(context).textTheme.headline2,
               ),
               Text(
                 'We need to enable bluetooth in order to scan and connect to nearby devices',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                      color: Colors.white,
-                    ),
+                style: Theme.of(context).textTheme.subtitle1,
               ),
               CustomButton(
                 buttonText: 'Enable',
@@ -56,8 +53,7 @@ class PermissionsPage extends StatelessWidget {
                 buttonColor: const Color.fromRGBO(63, 223, 158, 1),
                 leading: true,
                 onTap: () {
-                  pc.getPermission(context);
-                  Navigator.of(context).pushNamed(Home.routeName);
+                  pc.getPermission();
                 },
               ),
             ],

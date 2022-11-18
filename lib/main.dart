@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:sonic/routes/navigation_routes.dart';
 import 'package:sonic/src/screens/permission/permission.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +11,7 @@ void main() {
 }
 
 //Icon( Icons.radar_outlined, ),
-//https://www.codetd.com/en/article/11667523
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,10 @@ class MyApp extends StatelessWidget {
         builder: (context, child) => GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Sonic',
+          theme: FlexThemeData.light(scheme: FlexScheme.aquaBlue),
+          // The Mandy red, dark theme.
+          darkTheme: FlexThemeData.dark(scheme: FlexScheme.aquaBlue),
+          themeMode: ThemeMode.system,
           routes: routes,
           initialRoute: PermissionsPage.routeName,
         ),

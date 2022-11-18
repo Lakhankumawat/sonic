@@ -7,6 +7,7 @@ import '../find_device/find_device.dart';
 
 class Home extends StatelessWidget {
   static String routeName = '/home';
+
   Home({Key? key}) : super(key: key);
 
   final HomeController _hc = Get.put(HomeController());
@@ -26,7 +27,6 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
         title: const Center(child: Text('Sonic')),
       ),
       body: Container(
@@ -38,7 +38,6 @@ class Home extends StatelessWidget {
               () => SwitchListTile(
                   title: const Text('Enable Bluetooth'),
                   value: _hc.bluetoothState.value,
-                  activeColor: Colors.black,
                   onChanged: (bool value) => _hc.bluetoothSwitch(value)),
             ),
             ListTile(
@@ -46,10 +45,6 @@ class Home extends StatelessWidget {
               subtitle: Obx(() =>
                   Text(_hc.bluetoothState.value ? 'enabled' : 'disabled')),
               trailing: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
-                  onPrimary: Colors.white,
-                ),
                 onPressed: () {
                   FlutterBluetoothSerial.instance.openSettings();
                 },
@@ -69,11 +64,7 @@ class Home extends StatelessWidget {
             const ListTile(title: Text('Devices discovery and connection')),
             ListTile(
               title: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.black,
-                ),
-                onPressed: ()async {
-
+                onPressed: () async {
                   final BluetoothDevice? selectedDevice =
                       await Navigator.of(context).push(
                     MaterialPageRoute(
@@ -85,7 +76,6 @@ class Home extends StatelessWidget {
 
                   if (selectedDevice != null) {
                     print('Connect -> selected ' + selectedDevice.address);
-
                   } else {
                     print('Connect -> no device selected');
                   }
