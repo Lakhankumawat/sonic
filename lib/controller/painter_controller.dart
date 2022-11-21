@@ -24,7 +24,7 @@ class PainterController extends GetxController{
 
   //point for points
   final Paint points = Paint()
-    ..color = Color(0xff63aa65)
+    ..color = const Color(0xff63aa65)
     ..strokeCap = StrokeCap.round //rounded points
     ..strokeWidth = 10;
 

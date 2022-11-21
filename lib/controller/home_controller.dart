@@ -24,7 +24,7 @@ class HomeController extends GetxController {
     // Get local device address
     List<BluetoothDevice> devices = await serial.getBondedDevices();
     if (devices.isNotEmpty) {
-      address.value = devices[0].address ?? "...";
+      address.value = devices[0].address;
       name.value = devices[0].name ?? "UNKNOWN";
     } else {
       address.value = "NULL";
@@ -48,6 +48,7 @@ class HomeController extends GetxController {
     } else {
       await FlutterBluetoothSerial.instance.requestDisable();
     }
+
     init();
   }
 }

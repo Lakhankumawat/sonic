@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import '../../../components/custom_button.dart';
 import '../../../controller/permission_controller.dart';
-import '../home/home.dart';
 
 class PermissionsPage extends StatelessWidget {
   static String routeName = '/permissions';

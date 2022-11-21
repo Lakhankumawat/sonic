@@ -7,12 +7,13 @@ import '../../../constant/constant.dart';
 import '../../../controller/radar_controller.dart';
 
 class RadarView extends StatefulWidget {
-  static final String routeName = '/radarView';
+  static const String routeName = '/radarView';
 
   const RadarView({Key? key}) : super(key: key);
 
   @override
-  _RadarViewState createState() => _RadarViewState();
+  State<StatefulWidget> createState() => _RadarViewState();
+
 }
 
 class _RadarViewState extends State<RadarView> {
@@ -24,7 +25,7 @@ class _RadarViewState extends State<RadarView> {
 
   @override
   void initState() {
-    this.timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
         angle = _controller.iangle.value;
         distance = _controller.idistance.value;
@@ -35,7 +36,7 @@ class _RadarViewState extends State<RadarView> {
 
   @override
   void dispose() {
-    this.timer.cancel();
+    timer.cancel();
     super.dispose();
   }
 
@@ -45,7 +46,7 @@ class _RadarViewState extends State<RadarView> {
       alignment: Alignment.center,
       child: Transform.scale(
         scale: 0.8,
-        child: Container(
+        child: SizedBox(
           width: Get.size.width,
           height: Get.size.height,
           child: CustomPaint(
@@ -66,7 +67,7 @@ class ClockPainter extends CustomPainter {
 
   ClockPainter({this.angle = 0, this.distance = 0});
 
-  Paint _bgPaint = Paint()
+  final Paint _bgPaint = Paint()
     ..color = Colors.white
     ..strokeWidth = 1
     ..style = PaintingStyle.stroke;

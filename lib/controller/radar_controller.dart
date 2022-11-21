@@ -1,7 +1,8 @@
 import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get/get.dart';
-import '../model/dataModel.dart';
+import '../model/data_model.dart';
 
 class RadarController extends GetxController {
   late final BluetoothConnection _connection;
@@ -24,7 +25,7 @@ class RadarController extends GetxController {
   @override
   void onInit() async {
     //pass the address as parameter to onInit in the getx
-    print("address is $address");
+    debugPrint("address is $address");
     if (address != null) {
       initData(address);
     }
@@ -42,25 +43,24 @@ class RadarController extends GetxController {
 
   void initData(String? address) async {
     //connect to address and start listening
-    BluetoothConnection.toAddress(address!).then((_connection) {
-      print('Connected to the device');
-      this._connection = _connection;
+    BluetoothConnection.toAddress(address!).then((connection) {
+      debugPrint('Connected to the device');
+      _connection = connection;
       isConnected.value = true;
-      _connection.input!.listen(_processData).onDone(() {
+      connection.input!.listen(_processData).onDone(() {
         if (isDisconnecting.value) {
-          print('Disconnecting locally!');
+          debugPrint('Disconnecting locally!');
         } else {
-          print('Disconnected remotely!');
+          debugPrint('Disconnected remotely!');
         }
       });
     }).catchError((error) {
-      print('Cannot connect, exception occured');
-      print(error);
+      debugPrint('Cannot connect, exception occured');
+      debugPrint(error);
     });
   }
 
   void _processData(Uint8List data) {
-    List<RadarData> radarData = List<RadarData>.empty(growable: true);
     _buffer += data;
 
     while (true) {
@@ -76,18 +76,10 @@ class RadarController extends GetxController {
           //print data
           String angle = String.fromCharCodes(_buffer.sublist(0, separator));
           String distance =
-          String.fromCharCodes(_buffer.sublist(separator + 1, index));
-          final RadarData sample = RadarData(
-            angle: angle,
-            distance: distance,
-          );
-          //print("angle : $angle , distance : $distance");
-          iangle = double
-              .parse(angle)
-              .obs;
-          idistance = double
-              .parse(distance)
-              .obs;
+              String.fromCharCodes(_buffer.sublist(separator + 1, index));
+          //debugPrint("angle : $angle , distance : $distance");
+          iangle = double.parse(angle).obs;
+          idistance = double.parse(distance).obs;
           //radarData.add(sample);
           //notifyListeners();
           //remove data from buffer

@@ -1,23 +1,20 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:sonic/src/screens/radar/radarPainter.dart';
+import 'package:sonic/src/screens/radar/radar_painter.dart';
 
 class RadarView extends StatefulWidget {
+  const RadarView({super.key});
+
   @override
-  _RadarViewState createState() => _RadarViewState();
+  State<StatefulWidget> createState() => _RadarViewState();
 }
 
 class _RadarViewState extends State<RadarView>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
     //final radians = degrees * math.pi / 180;
-    _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
-    _animation = Tween(begin: .0, end: 2 * pi).animate(_controller);
     //_controller.reverse(from:pi);
     _controller.repeat();
     super.initState();

@@ -1,5 +1,5 @@
 // import 'dart:typed_data';
-// import '../model/dataModel.dart';
+// import '../model/data_model.dart';
 //
 // void _onDataReceived(Uint8List data){
 //
@@ -22,7 +22,7 @@
 //         //
 //         //   samples.add(sample);
 //         //   notifyListeners(); // Note: It shouldn't be invoked very often - in this example data comes at every second, but if there would be more data, it should update (including repaint of graphs) in some fixed interval instead of after every sample.
-//         //   //print("${sample.timestamp.toString()} -> ${sample.temperature1} / ${sample.temperature2}");
+//         //   //debugPrint("${sample.timestamp.toString()} -> ${sample.temperature1} / ${sample.temperature2}");
 //         // }
 //         // Otherwise break
 //         //angle min 15 to max 165

@@ -8,16 +8,16 @@ import '../../../controller/radar_controller.dart';
 class RadarPainter extends CustomPainter {
   final RadarController _rc = Get.find();
   final PainterController _pc = Get.put(PainterController());
-  Paint _bgPaint = Paint()
+  final Paint _bgPaint = Paint()
     ..color = Colors.white
     ..strokeWidth = 1
     ..style = PaintingStyle.stroke;
 
-  Paint _paint = Paint()..style = PaintingStyle.fill;
+  final Paint _paint = Paint()..style = PaintingStyle.fill;
 
   //point for points
   final Paint _points = Paint()
-    ..color = Color(0xff63aa65)
+    ..color = const Color(0xff63aa65)
     ..strokeCap = StrokeCap.round //rounded points
     ..strokeWidth = 10;
 
@@ -58,7 +58,7 @@ class RadarPainter extends CustomPainter {
     //draw radar line at angle provided by task object
     // final int  rangle = int.parse(task.radarData.last.angle);
     // final int distance = int.parse(task.radarData.last.distance);
-    // print("rangle: $rangle"+" distance: $distance");
+    // debugPrint("rangle: $rangle"+" distance: $distance");
 
     // canvas.save();
     // double r = sqrt(pow(size.width, 2) + pow(size.height, 2));
@@ -100,7 +100,7 @@ class RadarPainter extends CustomPainter {
   void drawObject(Canvas canvas, Size size) {
     double pixelDistance =
         _rc.idistance.value * ((size.height - size.height * 0.1666) * 0.025);
-    print("pixelDistance: $pixelDistance");
+    debugPrint("pixelDistance: $pixelDistance");
     if (pixelDistance < 40) {
       //draw a point on the radar
       canvas.drawPoints(

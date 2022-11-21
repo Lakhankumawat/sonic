@@ -29,62 +29,60 @@ class Home extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const Center(child: Text('Sonic')),
       ),
-      body: Container(
-        child: ListView(
-          children: <Widget>[
-            const Divider(),
-            const ListTile(title: Text('General')),
-            Obx(
-              () => SwitchListTile(
-                  title: const Text('Enable Bluetooth'),
-                  value: _hc.bluetoothState.value,
-                  onChanged: (bool value) => _hc.bluetoothSwitch(value)),
+      body: ListView(
+        children: <Widget>[
+          const Divider(),
+          const ListTile(title: Text('General')),
+          Obx(
+            () => SwitchListTile(
+                title: const Text('Enable Bluetooth'),
+                value: _hc.bluetoothState.value,
+                onChanged: (bool value) => _hc.bluetoothSwitch(value)),
+          ),
+          ListTile(
+            title: const Text('Bluetooth status'),
+            subtitle: Obx(
+                () => Text(_hc.bluetoothState.value ? 'enabled' : 'disabled')),
+            trailing: ElevatedButton(
+              onPressed: () {
+                FlutterBluetoothSerial.instance.openSettings();
+              },
+              child: const Text('Settings'),
             ),
-            ListTile(
-              title: const Text('Bluetooth status'),
-              subtitle: Obx(() =>
-                  Text(_hc.bluetoothState.value ? 'enabled' : 'disabled')),
-              trailing: ElevatedButton(
-                onPressed: () {
-                  FlutterBluetoothSerial.instance.openSettings();
-                },
-                child: const Text('Settings'),
-              ),
-            ),
-            ListTile(
-              title: const Text('Local adapter address'),
-              subtitle: Obx(() => Text(_hc.address.value)),
-            ),
-            ListTile(
-              title: const Text('Local adapter name'),
-              subtitle: Obx(() => Text(_hc.name.value)),
-              onLongPress: null,
-            ),
-            const Divider(),
-            const ListTile(title: Text('Devices discovery and connection')),
-            ListTile(
-              title: ElevatedButton(
-                onPressed: () async {
-                  final BluetoothDevice? selectedDevice =
-                      await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return FindDevicesScreen();
-                      },
-                    ),
-                  );
+          ),
+          ListTile(
+            title: const Text('Local adapter address'),
+            subtitle: Obx(() => Text(_hc.address.value)),
+          ),
+          ListTile(
+            title: const Text('Local adapter name'),
+            subtitle: Obx(() => Text(_hc.name.value)),
+            onLongPress: null,
+          ),
+          const Divider(),
+          const ListTile(title: Text('Devices discovery and connection')),
+          ListTile(
+            title: ElevatedButton(
+              onPressed: () async {
+                final BluetoothDevice? selectedDevice =
+                    await Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FindDevicesScreen();
+                    },
+                  ),
+                );
 
-                  if (selectedDevice != null) {
-                    print('Connect -> selected ' + selectedDevice.address);
-                  } else {
-                    print('Connect -> no device selected');
-                  }
-                },
-                child: const Text('Connect to paired device to chat'),
-              ),
+                if (selectedDevice != null) {
+                  debugPrint('Connect -> selected ${selectedDevice.address}');
+                } else {
+                  debugPrint('Connect -> no device selected');
+                }
+              },
+              child: const Text('Connect to paired device to chat'),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -13,6 +13,7 @@ class DeviceController extends GetxController {
   RxList<BluetoothCharacteristic> characteristics =
       RxList<BluetoothCharacteristic>([]);
   RxList<BluetoothDescriptor> descriptors = RxList<BluetoothDescriptor>([]);
+
   //instead of big object set all the parameters manually
 
   List<int> getRandomBytes() {
@@ -92,15 +93,15 @@ class DeviceController extends GetxController {
   //Listen to bluetooth data and print it to the console
   void listenToBluetoothData() {
     device.value.state.listen((event) {
-      print('/----------Bluetooth Device Data----------/');
-      print('Device Name: ${device.value.name}');
-      print('Device ID: ${device.value.id}');
-      print('Device State: ${device.value.state}');
-      print('Device Services: ${device.value.services}');
-      print('Device MTU Size: ${device.value.mtu}');
-      print(
+      debugPrint('/----------Bluetooth Device Data----------/');
+      debugPrint('Device Name: ${device.value.name}');
+      debugPrint('Device ID: ${device.value.id}');
+      debugPrint('Device State: ${device.value.state}');
+      debugPrint('Device Services: ${device.value.services}');
+      debugPrint('Device MTU Size: ${device.value.mtu}');
+      debugPrint(
           'Device isDiscoveringServices: ${device.value.isDiscoveringServices}');
-      print('/----------Bluetooth Device Data----------/');
+      debugPrint('/----------Bluetooth Device Data----------/');
     });
   }
 }

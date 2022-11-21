@@ -9,10 +9,10 @@ class ChatPage extends StatefulWidget {
   static String routeName = "/chat";
   final BluetoothDevice? server;
 
-  const ChatPage({this.server});
+  const ChatPage({super.key, this.server});
 
   @override
-  _ChatPage createState() => _ChatPage();
+  State<StatefulWidget> createState() => _ChatPage();
 }
 
 class _Message {
@@ -33,6 +33,7 @@ class _ChatPage extends State<ChatPage> {
   final ScrollController listScrollController = ScrollController();
 
   bool isConnecting = true;
+
   bool get isConnected => connection != null && connection!.isConnected;
 
   bool isDisconnecting = false;
@@ -42,7 +43,7 @@ class _ChatPage extends State<ChatPage> {
     super.initState();
 
     BluetoothConnection.toAddress(widget.server!.address).then((connection) {
-      print('Connected to the device');
+      debugPrint('Connected to the device');
       connection = connection;
       setState(() {
         isConnecting = false;
@@ -57,17 +58,17 @@ class _ChatPage extends State<ChatPage> {
         // If we except the disconnection, `onDone` should be fired as result.
         // If we didn't except this (no flag set), it means closing by remote.
         if (isDisconnecting) {
-          print('Disconnecting locally!');
+          debugPrint('Disconnecting locally!');
         } else {
-          print('Disconnected remotely!');
+          debugPrint('Disconnected remotely!');
         }
         if (mounted) {
           setState(() {});
         }
       });
     }).catchError((error) {
-      print('Cannot connect, exception occured');
-      print(error);
+      debugPrint('Cannot connect, exception occured');
+      debugPrint(error);
     });
   }
 

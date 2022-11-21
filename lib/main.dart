@@ -7,12 +7,14 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 //Icon( Icons.radar_outlined, ),
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MediaQuery(

@@ -3,15 +3,14 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get/get.dart';
 import 'package:sonic/controller/find_device_controller.dart';
 import 'package:sonic/src/screens/clockView/clock.dart';
-import 'package:sonic/src/screens/radar/radarPage.dart';
 
-import '../../../components/widgets.dart';
-import '../device/devices.dart';
 import 'list_devices.dart';
 
 class FindDevicesScreen extends StatelessWidget {
   static String routeName = '/find_devices';
   final FindDeviceController _dc = Get.put(FindDeviceController());
+
+  FindDevicesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class FindDevicesScreen extends StatelessWidget {
                   ),
                 )
               : IconButton(
-                  icon: Icon(Icons.replay),
+                  icon: const Icon(Icons.replay),
                   onPressed: _dc.restartDiscovery,
                 )
         ],
@@ -55,15 +54,15 @@ class FindDevicesScreen extends StatelessWidget {
                 try {
                   bool bonded = false;
                   if (device.isBonded) {
-                    print('Unbonding from ${device.address}...');
+                    debugPrint('Unbonding from ${device.address}...');
                     await FlutterBluetoothSerial.instance
                         .removeDeviceBondWithAddress(address);
-                    print('Unbonding from ${device.address} has succed');
+                    debugPrint('Unbonding from ${device.address} has succed');
                   } else {
-                    print('Bonding with ${device.address}...');
+                    debugPrint('Bonding with ${device.address}...');
                     bonded = (await FlutterBluetoothSerial.instance
                         .bondDeviceAtAddress(address))!;
-                    print(
+                    debugPrint(
                         'Bonding with ${device.address} has ${bonded ? 'succed' : 'failed'}.');
                   }
 
@@ -146,7 +145,7 @@ class FindDevicesScreen extends StatelessWidget {
       //                         (r) => ScanResultTile(
       //                           result: r,
       //                           onTap: () async {
-      //                             print('Connecting to device...${r.device.name}');
+      //                             debugPrint('Connecting to device...${r.device.name}');
       //                             await r.device.connect();
       //
       //                             Navigator.of(context).pushNamed(
