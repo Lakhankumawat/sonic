@@ -6,29 +6,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 
 class ScanResultTile extends StatelessWidget {
-  const ScanResultTile(
-      {Key? key, required this.result, required this.onTap})
+  const ScanResultTile({Key? key, required this.result, required this.onTap})
       : super(key: key);
 
   final ScanResult result;
   final VoidCallback onTap;
 
   Widget _buildTitle(BuildContext context) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            result.device.name,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            result.device.id.toString(),
-            style: Theme.of(context).textTheme.caption,
-          )
-        ],
-      );
-
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          result.device.name,
+          overflow: TextOverflow.ellipsis,
+        ),
+        Text(
+          result.device.id.toString(),
+        )
+      ],
+    );
   }
 
   Widget _buildAdvRow(BuildContext context, String title, String value) {
@@ -37,18 +34,13 @@ class ScanResultTile extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(title, style: Theme.of(context).textTheme.caption),
+          Text(title),
           const SizedBox(
             width: 12.0,
           ),
           Expanded(
             child: Text(
               value,
-              style: Theme.of(context)
-                  .textTheme
-                  .caption
-                  ?.apply(color: Colors.black),
-              softWrap: true,
             ),
           ),
         ],
@@ -134,8 +126,7 @@ class ServiceTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             const Text('Service'),
-            Text('0x${service.uuid.toString().toUpperCase().substring(4, 8)}',
-                style: Theme.of(context).textTheme.caption),
+            Text('0x${service.uuid.toString().toUpperCase().substring(4, 8)}'),
           ],
         ),
         children: characteristicTiles,
@@ -181,8 +172,7 @@ class CharacteristicTile extends StatelessWidget {
               children: <Widget>[
                 const Text('Characteristic'),
                 Text(
-                    '0x${characteristic.uuid.toString().toUpperCase().substring(4, 8)}',
-                    style: Theme.of(context).textTheme.caption),
+                    '0x${characteristic.uuid.toString().toUpperCase().substring(4, 8)}'),
               ],
             ),
             subtitle: Text(value.toString()),
@@ -226,7 +216,10 @@ class DescriptorTile extends StatelessWidget {
   final VoidCallback onWritePressed;
 
   const DescriptorTile(
-      {Key? key,required this.descriptor,required this.onReadPressed,required this.onWritePressed})
+      {Key? key,
+      required this.descriptor,
+      required this.onReadPressed,
+      required this.onWritePressed})
       : super(key: key);
 
   @override
@@ -237,10 +230,7 @@ class DescriptorTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const Text('Descriptor'),
-          Text('0x${descriptor.uuid.toString().toUpperCase().substring(4, 8)}',
-              style: Theme.of(context)
-                  .textTheme
-                  .caption)
+          Text('0x${descriptor.uuid.toString().toUpperCase().substring(4, 8)}')
         ],
       ),
       subtitle: StreamBuilder<List<int>>(

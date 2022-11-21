@@ -5,6 +5,7 @@ import 'package:sonic/controller/device_controller.dart';
 
 class DeviceScreen extends StatelessWidget {
   static String routeName = '/device';
+
   DeviceScreen({Key? key}) : super(key: key);
   final BluetoothDevice device = Get.arguments as BluetoothDevice;
   final DeviceController deviceControl = Get.put(DeviceController());
@@ -39,10 +40,6 @@ class DeviceScreen extends StatelessWidget {
                   onPressed: onPressed,
                   child: Text(
                     text,
-                    style: Theme.of(context)
-                        .primaryTextTheme
-                        .button
-                        ?.copyWith(color: Colors.white),
                   ));
             },
           )

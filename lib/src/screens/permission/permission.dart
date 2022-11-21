@@ -36,14 +36,12 @@ class PermissionsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Enable Bluetooth',
-                style: Theme.of(context).textTheme.headline2,
               ),
-              Text(
+              const Text(
                 'We need to enable bluetooth in order to scan and connect to nearby devices',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle1,
               ),
               CustomButton(
                 buttonText: 'Enable',

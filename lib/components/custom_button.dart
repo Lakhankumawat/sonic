@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final Color textColor;
   final bool? leading;
   final VoidCallback onTap;
+
   const CustomButton(
       {Key? key,
       required this.buttonText,
@@ -44,7 +45,7 @@ class CustomButton extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
-                      .headline3!
+                      .headlineMedium!
                       .copyWith(color: textColor, fontSize: 20.w),
                 ),
                 SizedBox(
