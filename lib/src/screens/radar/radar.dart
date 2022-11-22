@@ -24,7 +24,7 @@ class _RadarViewState extends State<RadarView> {
 
   @override
   void initState() {
-    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 30), (timer) {
       setState(() {
         angle = _controller.iangle.value;
         distance = _controller.idistance.value;
@@ -41,18 +41,54 @@ class _RadarViewState extends State<RadarView> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Transform.scale(
-        scale: 0.8,
-        child: SizedBox(
-          width: Get.size.width,
-          height: Get.size.height,
-          child: CustomPaint(
-            painter: ClockPainter(angle: angle, distance: distance),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'angle: $angle',
+          style: const TextStyle(
+            fontSize: 20,
+            color: Colors.greenAccent,
           ),
         ),
-      ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'distance:',
+              style: TextStyle(fontSize: 20),
+            ),
+            distance < 40
+                ? Text(
+                    ' $distance',
+                    style: const TextStyle(fontSize: 20, color: Colors.red),
+                  )
+                : //else infinity icon
+                const Icon(
+                    Icons.dangerous_sharp, //infinity icon
+                    color: Colors.green,
+                    size: 20,
+                  ),
+          ],
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Transform.scale(
+            scale: 0.8,
+            child: SizedBox(
+              width: Get.size.width,
+              height: Get.size.height / 1.5,
+              child: CustomPaint(
+                painter: ClockPainter(angle: angle, distance: distance),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

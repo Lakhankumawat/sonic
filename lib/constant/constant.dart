@@ -10,7 +10,7 @@ class CustomColors {
   static Color clockOutline = const Color(0xFFEAECFF);
   static Color? secHandColor = Colors.orange[300];
   static Color minHandStatColor = const Color(0xFF748EF6);
-  static Color minHandEndColor = const Color(0xFF77DDFF);
+  static Color minHandEndColor = Colors.green;
   static Color hourHandStatColor = const Color(0xFFC279FB);
   static Color hourHandEndColor = const Color(0xFFEA74AB);
 }
