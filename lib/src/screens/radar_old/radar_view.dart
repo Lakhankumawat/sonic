@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sonic/src/screens/radar/radar_painter.dart';
+import 'package:sonic/src/screens/radar_old/radar_painter.dart';
 
 class RadarView extends StatefulWidget {
   const RadarView({super.key});

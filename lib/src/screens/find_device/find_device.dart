@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get/get.dart';
 import 'package:sonic/controller/find_device_controller.dart';
-import 'package:sonic/src/screens/clockView/clock.dart';
-
+import '../radar/radar.dart';
 import 'list_devices.dart';
 
 class FindDevicesScreen extends StatelessWidget {

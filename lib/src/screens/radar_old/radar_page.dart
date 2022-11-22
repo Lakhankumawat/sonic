@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sonic/src/screens/radar/radar_view.dart';
+import 'package:sonic/src/screens/radar_old/radar_view.dart';
 
 class RadarPage extends StatelessWidget {
   static const String routeName = '/radarPage';
