@@ -23,6 +23,5 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: true
           title: "Development Build"
-          files: |
-            LICENSE.txt
-            *.jar
+
+   
