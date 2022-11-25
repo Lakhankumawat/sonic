@@ -77,7 +77,7 @@ class RadarController extends GetxController {
           String angle = String.fromCharCodes(_buffer.sublist(0, separator));
           String distance =
               String.fromCharCodes(_buffer.sublist(separator + 1, index));
-          //debugPrint("angle : $angle , distance : $distance");
+          debugPrint("------angle : $angle , distance : $distance---------");
           iangle = double.parse(angle).obs;
           idistance = double.parse(distance).obs;
           //radarData.add(sample);
